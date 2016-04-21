@@ -1,5 +1,5 @@
 module.exports = {
-    entry: "./app.js",
+    entry: "./index.js",
     output: {
         path: __dirname,
         filename: "bundle.js"
@@ -12,7 +12,7 @@ module.exports = {
                 loader: 'babel-loader',
                 exclude: /node_modules/,
                 query: {
-                    presets: ['es2015']
+                    presets: ['es2015','react']
                 }
             }
         ]
