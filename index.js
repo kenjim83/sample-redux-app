@@ -5,7 +5,9 @@ import { createStore } from 'redux'
 import todoApp from './reducers'
 import App from './components/App'
 
-let store = createStore(todoApp)
+let localState = localStorage.getItem("appState")
+
+let store = createStore(todoApp, JSON.parse(localState) || {})
 
 render(
   <Provider store={store}>
@@ -13,3 +15,8 @@ render(
   </Provider>,
   document.getElementById('output')
 )
+
+window.onbeforeunload = saveStateOnExit;
+function saveStateOnExit(){
+    // localStorage.setItem("appState", JSON.stringify(store.getState()));
+}
