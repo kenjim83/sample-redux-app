@@ -1,22 +1,37 @@
+import 'babel-polyfill'
+import thunkMiddleware from 'redux-thunk'
+import createLogger from 'redux-logger'
+import { createStore, applyMiddleware } from 'redux'
+import { selectSubreddit, fetchPostsIfNeeded } from './actions/index'
+
+
 import React from 'react'
-import { render } from 'react-dom'
+import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
-import todoApp from './reducers'
-import App from './components/App'
+import rootReducer from './reducers'
+import Root from './containers/Root'
 
-let localState = localStorage.getItem("appState")
 
-let store = createStore(todoApp, JSON.parse(localState) || {})
+// EXAMPLE ASYNC STATE MUTATION & LOGGING TO CONSOLE
 
-render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+// const loggerMiddleware = createLogger()
+// const store = createStore(
+//     rootReducer,
+//     applyMiddleware(
+//         thunkMiddleware, // allows dispatch() functions
+//         loggerMiddleware // middleware that logs actions
+//     )
+// )
+
+// console.log(selectSubreddit)
+// store.dispatch(selectSubreddit('gaming'))
+// store.dispatch(fetchPostsIfNeeded('gaming')).then(() =>
+//   console.log(store.getState())
+// )
+
+
+ReactDOM.render(
+  <Root />,
   document.getElementById('output')
 )
 
-window.onbeforeunload = saveStateOnExit;
-function saveStateOnExit(){
-    // localStorage.setItem("appState", JSON.stringify(store.getState()));
-}

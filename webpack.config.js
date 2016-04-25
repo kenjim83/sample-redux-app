@@ -6,7 +6,6 @@ module.exports = {
     },
     module: {
         loaders: [
-            { test: /\.css$/, loader: "style!css" },
             {
                 test: /\.js$/,
                 loader: 'babel-loader',
@@ -14,7 +13,10 @@ module.exports = {
                 query: {
                     presets: ['es2015','react']
                 }
-            }
+            },
+            { test: /\.css$/, loader: "style!css" }
         ]
-    }
+    },
+
+    devtool: "source-map" // This turns allows you to debug the origina source files in ES6
 };

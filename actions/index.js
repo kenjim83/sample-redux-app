@@ -1,58 +1,42 @@
-/*
- * action creators
- */
+'use strict'
 
-let nextTodoId = 0
-export const addTodo = (text) => {
-  return {
-    type: 'ADD_TODO',
-    id: nextTodoId++,
-    text
-  }
-}
+// import subredditActions from './subreddits'
+// import todoActions from './todos'
+import { selectSubreddit,
+        invalidateSubreddit,
+        requestPosts,
+        receivePosts,
+        fetchPosts,
+        fetchPostsIfNeeded } from './subreddits'
 
-export const setVisibilityFilter = (filter) => {
-    return {
-        type: 'SET_VISIBILITY_FILTER',
-        filter
-    }
-}
+import {addTodo, setVisibilityFilter, toggleTodo} from './todos'
 
-export const toggleTodo = (id) => {
-    return {
-        type: 'TOGGLE_TODO',
-        id
-    }
-}
+// const selectSubreddit = subredditActions.selectSubreddit
+// const invalidateSubreddit = subredditActions.invalidateSubreddit
+// const requestPosts = subredditActions.requestPosts
+// const receivePosts = subredditActions.receivePosts
+// const fetchPosts = subredditActions.fetchPosts
 
-export const selectSubreddit = (subreddit) => {
-    return {
-        type: 'SELECT_SUBREDDIT',
-        subreddit
-    }
-}
-
-export const invalidateSubreddit = (subreddit) => {
-    return {
-        type: 'INVALIDATE_SUBREDDIT',
-        subreddit
-    }
-}
+// const addTodo = todoActions.addTodo
+// const setVisibilityFilter = todoActions.setVisibilityFilter
+// const toggleTodo = todoActions.toggleTodo
 
 
-export const requestPosts = (subreddit) => {
-    return {
-        type: 'REQUEST_POSTS',
-        subreddit
-    }
-}
 
-export const receivePosts = (subreddit, json) => {
-    return {
-        type: 'RECEIVE_POSTS',
-        subreddit,
-        posts: json.data.children.map(child => child.data),
-        receivedAt: Date.now()
-    }
-}
+module.exports = {
 
+    // subreddits
+    selectSubreddit,
+    invalidateSubreddit,
+    requestPosts,
+    receivePosts,
+    fetchPosts,
+    fetchPostsIfNeeded,
+
+
+    // todos
+    addTodo,
+    setVisibilityFilter,
+    toggleTodo
+
+};
